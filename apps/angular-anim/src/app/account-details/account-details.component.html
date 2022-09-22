@@ -4,6 +4,7 @@
 
   <div class="account-summary">
     <table>
+
       <thead>
       <tr>
         <th scope="col">Account ID</th>
@@ -12,12 +13,15 @@
       </tr>
       </thead>
 
-      <tr>
-        <!-- TODO: 8. route to detail view -->
-        <td>{{accountDetail.id}}</td>
-        <td>{{accountDetail.balance}}</td>
-        <td>{{accountDetail.currency}}</td>
-      </tr>
+      <tbody>
+        <tr>
+          <!-- TODO: 8. route to detail view -->
+          <td>{{accountDetail.id}}</td>
+          <td>{{accountDetail.balance}}</td>
+          <td>{{accountDetail.currency.toUpperCase()}}</td>
+        </tr>
+      </tbody>
+
     </table>
   </div>
 </div>

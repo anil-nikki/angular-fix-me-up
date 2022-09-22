@@ -5,6 +5,7 @@
     <!-- TODO: 7. Accessibility, table markup, form control -->
     <div class="account-summary">
       <table>
+
         <thead>
         <tr>
           <th scope="col">Account Name</th>
@@ -25,12 +26,15 @@
         </tr>
         </thead>
 
-        <tr *ngFor="let account of filteredAccounts">
-          <!-- TODO: 8. route to detail view -->
-          <td><a (click)="getAccountID(account.id)">{{account.id}}</a></td>
-          <td>{{account.balance}}</td>
-          <td>{{account.currency.toUpperCase()}}</td>
-        </tr>
+        <tbody>
+          <tr *ngFor="let account of filteredAccounts">
+            <!-- TODO: 8. route to detail view -->
+            <td><a (click)="getAccountID(account.id)">{{account.id}}</a></td>
+            <td>{{account.balance}}</td>
+            <td>{{account.currency.toUpperCase()}}</td>
+          </tr>
+        </tbody>
+
       </table>
     </div>
   </div>

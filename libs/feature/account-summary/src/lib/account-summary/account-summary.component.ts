@@ -8,6 +8,7 @@ import { AccountService } from '../../../../../shared/services/src/lib/account.s
 import { Observable, of } from 'rxjs';
 import {Router} from "@angular/router";
 import {FormBuilder, Validators} from "@angular/forms";
+import {take} from "rxjs/operators";
 
 
 @Component({
@@ -26,7 +27,7 @@ export class AccountSummaryComponent implements OnInit {
   filteredAccounts: Account[] = [];
 
   ngOnInit(): void {
-    this.accountService.getAccounts().subscribe((accounts) => {
+    this.accountService.getAccounts().pipe(take(1)).subscribe((accounts) => {
       this.accounts = accounts;
       this.filteredAccounts = accounts;
     });
