@@ -1,27 +1,39 @@
-<h1>Account Summary</h1>
-<!-- TODO: 6. Angular ngFor, refactor, and bonus points -->
-<!-- TODO: 7. Accessibility, table markup, form control -->
-<div class="account-summary">
-  <section>
-    <table>
-      <tr>
-        <th scope="col">Account Name</th>
-        <th scope="col">Balance</th>
-        <th scope="col">
-          <label>Account Type</label>
-          <select [(ngModel)]="accountsFilter">
-            <option value="">None</option>
-            <option value="cad">CAD</option>
-            <option value="usd">USD</option>
-          </select>
-        </th>
-      </tr>
-      <tr *ngFor="let account of filterAccounts(accounts)">
-        <!-- TODO: 8. route to detail view -->
-        <th><a>{{account.id}}</a></th>
-        <td>{{account.balance}}</td>
-        <td>{{account.currency}}</td>
-      </tr>
-    </table>
-  </section>
-</div>
+<ng-container>
+  <div class="">
+    <h1>Account Summary</h1>
+    <!-- TODO: 6. Angular ngFor, refactor, and bonus points -->
+    <!-- TODO: 7. Accessibility, table markup, form control -->
+    <div class="account-summary">
+      <table>
+        <thead>
+        <tr>
+          <th scope="col">Account Name</th>
+          <th scope="col">Balance</th>
+          <th scope="col">
+            <label>Account Type</label>
+            <form [formGroup]="currencyFilter">
+              <div class="d-grid">
+                <select class="custom-select mb-3" (change)="changeCurrencyType($event)" formControlName="currencyName">
+                  <option value="">None</option>
+                  <option *ngFor="let currency of currencyTypes" [ngValue]="currency">
+                    {{ currency }}
+                  </option>
+                </select>
+              </div>
+            </form>
+          </th>
+        </tr>
+        </thead>
+
+        <tr *ngFor="let account of filteredAccounts">
+          <!-- TODO: 8. route to detail view -->
+          <td><a (click)="getAccountID(account.id)">{{account.id}}</a></td>
+          <td>{{account.balance}}</td>
+          <td>{{account.currency.toUpperCase()}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</ng-container>
+
+

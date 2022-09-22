@@ -1,4 +1,4 @@
-@use "theme";
+@use 'theme';
 
 section {
   height: 40px;
@@ -9,6 +9,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0;
 }
 
 // TODO: 11. The Last Link is only suppose to be offset from the side of the screen
@@ -17,6 +18,7 @@ section {
   a {
     // TODO: 12. something's off with this include
     // @include link();
+    @include theme.link();
     color: white;
   }
 }

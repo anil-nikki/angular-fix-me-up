@@ -1,7 +1,7 @@
 import { SideNavItem } from '@angular-anim/shared/presentational';
 import { UserFacade } from '@angular-anim/shared/store';
 import { Component, OnInit } from '@angular/core';
-import { startWith } from 'rxjs';
+import {startWith} from "rxjs/operators";
 
 @Component({
   selector: 'angular-anim-root',
@@ -11,6 +11,7 @@ import { startWith } from 'rxjs';
 export class AppComponent implements OnInit {
   sideNavItems: SideNavItem[] = [];
   user$ = this.userFacade.getUser();
+
   userName$ = this.userFacade.getUserName().pipe(
     startWith('Not Logged In'),
   )
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
     this.sideNavItems = [
       { title: 'Account Overview', subtitle: '', link: '/' },
       { title: 'Transfers', subtitle: '', link: '/transfers' },
-      { title: 'About Challenge', subtitle: '', link: '/about' },
-    ]
+      { title: 'About Challenge', subtitle: '', link: "/about" }
+    ];
+    console.log("User Details", this.user$.subscribe());
   }
 }

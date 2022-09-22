@@ -1,4 +1,25 @@
 <h1>Account Details</h1>
+<div  *ngIf="accountDetail && accountDetail.id">
+  <!-- TODO: how to retrieve account id and other account details in this route? -->
 
-<p>Account ID</p>
-<!-- TODO: how to retrieve account id and other account details in this route? -->
+  <div class="account-summary">
+    <table>
+      <thead>
+      <tr>
+        <th scope="col">Account ID</th>
+        <th scope="col">Balance</th>
+        <th scope="col">Account Type</th>
+      </tr>
+      </thead>
+
+      <tr>
+        <!-- TODO: 8. route to detail view -->
+        <td>{{accountDetail.id}}</td>
+        <td>{{accountDetail.balance}}</td>
+        <td>{{accountDetail.currency}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
