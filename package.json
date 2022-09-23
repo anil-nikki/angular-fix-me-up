@@ -8,6 +8,7 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
+    "coverage": "npm run test -- --coverage",
     "affected": "nx affected --target=test"
   },
   "private": true,
