@@ -34,7 +34,6 @@ export class AccountSummaryComponent implements OnInit {
   }
 
   filterAccounts(currency: string) {
-    console.log("value changed");
     this.filteredAccounts = this.accounts.filter(acc => acc.currency.toUpperCase() === currency);
     return this.filteredAccounts;
   }

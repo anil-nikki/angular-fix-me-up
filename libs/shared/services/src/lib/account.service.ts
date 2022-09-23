@@ -19,15 +19,4 @@ export class AccountService {
     return of(this.accounts);
   }
 
-  fetchAccountDetail(id: string): Observable<Account> {
-      this.accounts.filter(account => {
-        if(account.id === id){
-          this.accountData = account;
-        } else {
-          this.accountData = null;
-        }
-      });
-    console.log("service-AccountData", this.accountData)
-    return of(this.accountData) as any;
-  }
 }

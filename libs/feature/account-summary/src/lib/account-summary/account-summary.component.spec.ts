@@ -1,8 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import { AccountSummaryComponent } from './account-summary.component';
 import {RouterTestingModule} from "@angular/router/testing";
 import {FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
+import {
+  AccountDetailsComponent
+} from "../../../../../../apps/angular-anim/src/app/account-details/account-details.component";
 
 // TODO: 9. Topics in this file: Angular Unit Testing w/ Jest
 describe('AccountSummaryComponent', () => {
@@ -13,7 +16,7 @@ describe('AccountSummaryComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AccountSummaryComponent],
-      imports: [RouterTestingModule, FormsModule, ReactiveFormsModule]
+      imports: [RouterTestingModule.withRoutes([{ path: 'account/:id', component: AccountDetailsComponent }]), FormsModule, ReactiveFormsModule]
     }).compileComponents();
     router = TestBed.get(Router);
     fixture = TestBed.createComponent(AccountSummaryComponent);
@@ -55,11 +58,25 @@ describe('AccountSummaryComponent', () => {
 
     });
 
-    it('should show news intially ', () => {
+    it('should call filterAccount', fakeAsync(() => {
+      jest.spyOn(component, 'changeCurrencyType');
+      jest.spyOn(component, 'filterAccounts');
+
+      let select = fixture.debugElement.nativeElement.querySelector('select');
+      select.dispatchEvent(new Event('change'));
+      tick();
+      expect(component.changeCurrencyType).toHaveBeenCalled();
+      expect(component.filterAccounts).toHaveBeenCalled();
+
+    }));
+
+    it('should navigate to account page with account if as param', () => {
       const navigateSpy = jest.spyOn(router,'navigate');
       const accountId: string = "1234";
       component.getAccountID(accountId);
       expect(navigateSpy).toHaveBeenCalledWith(['account', accountId]);
     });
+
+
   });
 });
